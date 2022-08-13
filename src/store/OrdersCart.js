@@ -8,6 +8,7 @@ const OrdersCart = (props) => {
     const [myOrders, setMyOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [name, setName] = useState('');
+    console.log(process.env);
     async function fetchOrdersHandler() {
         setIsLoading(true);
         try {
@@ -28,7 +29,6 @@ const OrdersCart = (props) => {
                 }
                 if (found) {
                     for (const item of data[key].order) {
-                        console.log(item); //3
                         loadedOrders.push({
                             ...item,
                         });
@@ -59,6 +59,7 @@ const OrdersCart = (props) => {
                 <p>Loading...</p>
             ) : (
                 <div>
+                    <h2>Search to see your orders!</h2>
                     <label>Name</label>
                     <input
                         className={classes.inputfetch}

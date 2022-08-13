@@ -35,10 +35,16 @@ const HeaderCartButton = (props) => {
 
     return (
         <Fragment>
-            <button className={btnClasses} onClick={props.onOrders}>Your Orders</button>
+            <button className={btnClasses} onClick={props.onOrders}>
+                <span className={`${classes.icon} ${classes.optional}`}>
+                    <CartIcon icon='2' />
+                    
+                </span>
+                <span >Your Orders</span>
+            </button>
             <button className={btnClasses} onClick={props.onClick}>
-                <span className={classes.icon}>
-                    <CartIcon />
+                <span className={`${classes.icon} ${classes.optional}`}>
+                    <CartIcon icon='1' />
                 </span>
                 <span>Your Cart</span>
                 <span className={classes.badge}>{numberOfCartItems}</span>

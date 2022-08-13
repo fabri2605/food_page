@@ -21,6 +21,7 @@
 
 .actions {
   text-align: right;
+  margin-top: 10px;
 }
 
 .actions button {
@@ -66,6 +67,9 @@ input{
 }
 .inputfetch{
   margin:1rem;
+  border-width: 1px;
+  border-radius: 10px;
+  padding: 9px;
 }
 .buttonf{
   font: inherit;

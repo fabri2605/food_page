@@ -10,7 +10,7 @@ const CartIcon = (props) => {
             </svg>
         );
     } else {
-        return <i class="fa-solid fa-dumpster-fire"></i>;
+        return <i className="fa-solid fa-dumpster-fire"></i>;
     }
 };
 

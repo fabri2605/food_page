@@ -87,3 +87,9 @@ input{
   border-color: #ffffff;
   color: white;
 }
+
+@media screen and (max-width: 350px) {
+    .buttonf{
+      margin-left: 0.5rem;
+    }
+}

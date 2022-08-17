@@ -59,7 +59,7 @@ const Cart = (props) => {
             city: city,
         };
         const response = await fetch(
-            'https://react-http-467cc-default-rtdb.firebaseio.com/orders.json',
+            process.env.REACT_APP_NOT_SECRET_CODE_ORDERS,
             {
                 method: 'POST',
                 body: JSON.stringify({order: cartCtx.items, user: order}),

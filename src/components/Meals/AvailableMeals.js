@@ -2,27 +2,35 @@ import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
 import classes from './AvailableMeals.module.css';
 import React from 'react';
+import Filter from '../UI/Filter';
 
 const AvailableMeals = () => {
     const [DUMMY_MEALS, setDummys] = React.useState([]);
+    const [filteredMeals, setFilteredMeals] = React.useState(DUMMY_MEALS);
     const [isLoading, setIsLoading] = React.useState(true);
     const [hasError, setHasError] = React.useState('');
 
     async function fetchingMeals() {
         const response = await fetch(
-            'https://react-http-467cc-default-rtdb.firebaseio.com/meals.json'
+            process.env.REACT_APP_NOT_SECRET_CODE_MEALS
         );
         if (!response.ok) {
             setHasError('Error while fetching');
         }
         const data = await response.json();
-        const smth = [];
+        const fetchedMeals = [];
         for (const key in data) {
-            smth.push({ ...data[key], id: key });
+            fetchedMeals.push({ ...data[key], id: key });
         }
-        setDummys(smth);
+        setDummys(fetchedMeals);
+        setFilteredMeals(fetchedMeals);
         setIsLoading(false);
     }
+
+    const changeFilterHandler = (type) => {
+        console.log(type);
+        setFilteredMeals(DUMMY_MEALS.filter((meal)=> meal.type === type));
+    };
 
     React.useEffect(
         React.useCallback(() => {
@@ -35,7 +43,7 @@ const AvailableMeals = () => {
     );
 
     const mealsList = React.useCallback(
-        DUMMY_MEALS.map((meal) => (
+        filteredMeals.map((meal) => (
             <MealItem
                 key={meal.id}
                 id={meal.id}
@@ -44,11 +52,12 @@ const AvailableMeals = () => {
                 price={meal.price}
             />
         )),
-        [DUMMY_MEALS]
+        [filteredMeals]
     );
 
     return (
         <section className={classes.meals}>
+            <Filter filterBy={changeFilterHandler} />
             <Card>
                 {!hasError ? (
                     isLoading ? (

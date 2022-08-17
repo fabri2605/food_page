@@ -8,12 +8,11 @@ const OrdersCart = (props) => {
     const [myOrders, setMyOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [name, setName] = useState('');
-    console.log(process.env);
     async function fetchOrdersHandler() {
         setIsLoading(true);
         try {
             const response = await fetch(
-                'https://react-http-467cc-default-rtdb.firebaseio.com/orders.json'
+                process.env.REACT_APP_NOT_SECRET_CODE_ORDERS
             );
             if (response.ok) {
                 console.log('All right!');
@@ -24,7 +23,7 @@ const OrdersCart = (props) => {
             let found = false;
 
             for (const key in data) {
-                if (data[key].user.name === name && !found) {
+                if (data[key].user.name.trim() === name.trim() && !found) {
                     found = true;
                 }
                 if (found) {

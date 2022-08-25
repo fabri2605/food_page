@@ -29,7 +29,11 @@ const AvailableMeals = () => {
 
     const changeFilterHandler = (type) => {
         console.log(type);
-        setFilteredMeals(DUMMY_MEALS.filter((meal)=> meal.type === type));
+        if (type === 'all') {
+            setFilteredMeals(DUMMY_MEALS);
+        } else {
+            setFilteredMeals(DUMMY_MEALS.filter((meal) => meal.type === type));
+        }
     };
 
     React.useEffect(

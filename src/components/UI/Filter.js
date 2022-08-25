@@ -15,12 +15,10 @@ function Filter(props) {
     return (
         <div className={classes.filter}>
             <select value={showing} onChange={filterHandler}>
-                <React.Fragment className={classes.options} >
                 <option value='all'>All</option>
                 <option value='meat'>Meat</option>
                 <option value='fish'>Fish</option>
                 <option value='veggie'>Veggies</option>
-                </React.Fragment>
             </select>
         </div>
     );

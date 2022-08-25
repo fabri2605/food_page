@@ -58,7 +58,7 @@ const Cart = (props) => {
             postal: postal,
             city: city,
         };
-        const response = await fetch(
+        /* const response = await fetch(
             process.env.REACT_APP_NOT_SECRET_CODE_ORDERS,
             {
                 method: 'POST',
@@ -69,7 +69,9 @@ const Cart = (props) => {
         if (response.ok) {
             cartCtx.clearItems();
             setPosted(<p className={classes.sent}>Your order was updated</p>)
-        }
+        } */
+        cartCtx.clearItems();
+        setPosted(<p className={classes.sent}>Your order was updated</p>)
     };
     const cancelation = (e) => {
         e.preventDefault();

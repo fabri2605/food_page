@@ -7,8 +7,10 @@ import CartItem from '../components/Cart/CartItem';
 const OrdersCart = (props) => {
     const [myOrders, setMyOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [fetched, setFetched] = useState(false);
     const [name, setName] = useState('');
     async function fetchOrdersHandler() {
+        setFetched(true);
         setIsLoading(true);
         try {
             const response = await fetch(
@@ -35,7 +37,6 @@ const OrdersCart = (props) => {
                     setMyOrders(loadedOrders);
                 }
             }
-
         } catch (e) {
             console.log(e.message);
         }
@@ -65,7 +66,7 @@ const OrdersCart = (props) => {
                         onChange={nameHandler}
                         value={name}
                     ></input>
-                    {name.length > 3 && myOrders.length===0 && (
+                    {name.length > 3 && myOrders.length === 0 && (
                         <button
                             className={classes.buttonf}
                             onClick={fetchOrdersHandler}
@@ -74,23 +75,30 @@ const OrdersCart = (props) => {
                         </button>
                     )}
                 </div>
-                
             )}
-            <ul className={classes['cart-items']}>
-            {myOrders.map((e) => {
-                return <CartItem
-                    key={e.key}
-                    name={e.name}
-                    amount={e.amount}
-                    price={e.price}
-                    changable={false}
-                />;
-            })}
-            </ul>
-            <div className={classes.total}>
-                <span>Total Amount</span>
-                <span>{totalAmount}</span>
-            </div>
+            {myOrders.length > 0 ? (
+                <>
+                    <ul className={classes['cart-items']}>
+                        {myOrders.map((e) => (
+                            <CartItem
+                                key={e.key}
+                                name={e.name}
+                                amount={e.amount}
+                                price={e.price}
+                                changable={false}
+                            />
+                        ))}
+                    </ul>
+                    <div className={classes.total}>
+                        <span>Total Amount</span>
+                        <span>{totalAmount}</span>
+                    </div>
+                </>
+            ) : fetched && !isLoading ? (
+                <div className={classes.total}>
+                    <p>There are no items ordered with that name</p>
+                </div>
+            ) : ''}
             <div className={classes.actions}>
                 <button onClick={props.onClose} className={classes.button}>
                     Close

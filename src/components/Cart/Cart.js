@@ -19,7 +19,8 @@ const Cart = (props) => {
     };
 
     const cartItemAddHandler = (item) => {
-        cartCtx.addItem(item);
+        const itemChanged = {...item, amount : 1};
+        cartCtx.addItem(itemChanged);
         setOrderWasSent(false);
     };
 

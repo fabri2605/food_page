@@ -85,7 +85,7 @@ const Checkout = (props) => {
 
     return (
         <form onSubmit={submitionHandler}>
-            <div>
+            <div className={classes.inputGroup}>
                 <label>Name</label>
                 <input
                     onChange={nameInputHandler}
@@ -96,7 +96,7 @@ const Checkout = (props) => {
                     <p className={classes.error}>Your name must be longer</p>
                 )}
             </div>
-            <div>
+            <div className={classes.inputGroup}>
                 <label>Street</label>
                 <input
                     onChange={streetInputHandler}
@@ -107,7 +107,7 @@ const Checkout = (props) => {
                     <p className={classes.error}>Street must be longer</p>
                 )}
             </div>
-            <div>
+            <div className={classes.inputGroup}>
                 <label>Postal Code</label>
                 <input
                     onChange={postalInputHandler}
@@ -118,7 +118,7 @@ const Checkout = (props) => {
                     <p className={classes.error}>Something is wrong</p>
                 )}
             </div>
-            <div>
+            <div className={classes.inputGroup}>
                 <label>City</label>
                 <input
                     onChange={cityInputHandler}

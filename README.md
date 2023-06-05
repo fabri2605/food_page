@@ -11,3 +11,11 @@
 npm install  =>  npm start
 
 Or simply go to ' https://react-http-467cc.web.app/ '
+
+# Re-deploying
+
+* firebase logout
+* firebase login
+* npm run build
+* firebase deploy
+
